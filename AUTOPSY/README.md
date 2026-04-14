@@ -103,6 +103,7 @@ Referencias:
 - https://www.autopsy.com/
 - https://github.com/sleuthkit/autopsy/releases/
 - https://knowledge.iadb.org/es/conocimiento-abierto/codigo-para-el-desarrollo/solucion-de-codigo-abierto/autopsy
+- [Manual Básico Autopsy](Manua_Basico_Autopsy.pdf)
 
 ---
 
