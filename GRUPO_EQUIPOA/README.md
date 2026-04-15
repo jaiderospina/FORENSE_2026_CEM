@@ -1,5 +1,5 @@
 # Laboratorio Autopsy
 
-Grupo: X
+Grupo: Equipo A
 
 Este laboratorio corresponde al análisis forense con Autopsy.
