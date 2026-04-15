@@ -3,10 +3,10 @@
 ## Grupo
 Equipo A  
 ##Integrante: 
-Mayor Galindo
-Mayor Varón
-Mayor Florez
-Capitán Mesa
+Mayor Galindo;
+Mayor Varón;
+Mayor Florez;
+Capitán Mesa;
 
 ## Objetivo
 Analizar una evidencia digital (image.zip) utilizando Autopsy para identificar información relevante en un caso forense.
