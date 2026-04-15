@@ -8,19 +8,13 @@ Mayor Varón
 Mayor Florez
 Capitán Mesa
 
----
-
 ## Objetivo
 Analizar una evidencia digital (image.zip) utilizando Autopsy para identificar información relevante en un caso forense.
-
----
 
 ## Herramientas utilizadas
 - Autopsy
 - Windows
 - Certutil (para verificar hash MD5)
-
----
 
 ## Procedimiento
 
@@ -38,8 +32,6 @@ Analizar una evidencia digital (image.zip) utilizando Autopsy para identificar i
 8. Se recuperaron archivos eliminados.
 9. Se analizó el contenido y los metadatos.
 
----
-
 ## Hallazgos
 
 ### Proveedor de droga
@@ -48,7 +40,6 @@ Dirección:
 626 Jungle Ave Apt 2  
 Jungle, NY 11111  
 
----
 
 ### Dato clave en coverpage.jpg
 Se encontró referencia a una imagen relacionada con drogas (High Times Magazine).  
@@ -57,13 +48,9 @@ pw=goodtimes
 
 Este dato es importante porque permite acceder a archivos protegidos.
 
----
-
 ### Escuelas relacionadas
 Se evidencia que el sospechoso vendía droga a estudiantes de secundaria, según el texto:
 "targeting the high school students"
-
----
 
 ### Técnicas de ocultamiento
 
@@ -72,8 +59,6 @@ Se evidencia que el sospechoso vendía droga a estudiantes de secundaria, según
 - Fragmentación de datos
 - Uso de contraseñas
 - Alteración de estructura del sistema de archivos
-
----
 
 ### Proceso del analista
 
@@ -84,8 +69,6 @@ Se evidencia que el sospechoso vendía droga a estudiantes de secundaria, según
 - Recuperación de archivos eliminados
 - Análisis de contenido y metadatos
 
----
-
 ## Glosario
 
 MD5: Huella digital de un archivo que permite verificar su integridad.  
@@ -93,8 +76,6 @@ Data Source: Fuente de datos que se analiza en Autopsy.
 Carving: Técnica para recuperar archivos eliminados.  
 Unallocated Space ($Unalloc): Espacio donde quedan datos borrados.  
 Disk Image: Copia completa de un disco para análisis forense.
-
----
 
 ## Conclusión
 
