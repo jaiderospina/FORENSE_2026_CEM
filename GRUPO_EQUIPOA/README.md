@@ -2,7 +2,11 @@
 
 ## Grupo
 Equipo A  
-Integrante:  
+##Integrante: 
+Mayor Galindo
+Mayor Varón
+Mayor Florez
+Capitán Mesa
 
 ---
 
