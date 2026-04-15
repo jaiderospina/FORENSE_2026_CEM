@@ -40,7 +40,6 @@ Dirección:
 626 Jungle Ave Apt 2  
 Jungle, NY 11111  
 
-
 ### Dato clave en coverpage.jpg
 Se encontró referencia a una imagen relacionada con drogas (High Times Magazine).  
 Además, se identificó una posible contraseña:  
