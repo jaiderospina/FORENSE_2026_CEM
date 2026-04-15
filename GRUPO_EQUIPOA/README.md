@@ -1,132 +1,99 @@
-# Laboratorio Autopsy
+# Laboratorio Forense Digital con Autopsy
 
-Grupo: Equipo A
-
-Este laboratorio corresponde al análisis forense con Autopsy.
-# 🧪 Laboratorio Forense Digital con Autopsy
-
-## 👥 Grupo
-
-Equipo A
-Integrante: Andres Mesa
+## Grupo
+Equipo A  
+Integrante:  
 
 ---
 
-## 🎯 Objetivo
-
-Analizar una evidencia digital (image.zip) utilizando la herramienta Autopsy para identificar información relevante en un caso forense.
-
----
-
-## 🧰 Herramientas utilizadas
-
-* Autopsy
-* Sistema operativo Windows
-* Certutil (verificación de hash MD5)
+## Objetivo
+Analizar una evidencia digital (image.zip) utilizando Autopsy para identificar información relevante en un caso forense.
 
 ---
 
-## 🔍 Procedimiento
+## Herramientas utilizadas
+- Autopsy
+- Windows
+- Certutil (para verificar hash MD5)
 
-1. Se descargó el archivo `image.zip` desde el repositorio.
+---
 
-2. Se verificó la integridad mediante hash MD5:
+## Procedimiento
 
-   ```bash
+1. Se descargó el archivo image.zip.
+2. Se verificó la integridad del archivo con MD5 usando el comando:
    certutil -hashfile image.zip MD5
-   ```
-
-3. Se confirmó coincidencia con el hash proporcionado.
-
+3. Se confirmó que el hash coincidía con el proporcionado.
 4. Se descomprimió el archivo.
-
-5. Se cargó la imagen en Autopsy como:
-
-   ```text
-   Disk Image or VM File
-   ```
-
+5. Se cargó la imagen en Autopsy como Disk Image.
 6. Se ejecutó el análisis automático.
-
-7. Se exploraron:
-
-   * Data Sources
-   * $CarvedFiles
-   * $Unalloc
-
+7. Se exploraron las secciones:
+   - Data Sources
+   - $CarvedFiles
+   - $Unalloc
 8. Se recuperaron archivos eliminados.
-
-9. Se analizó el contenido textual y metadatos.
-
----
-
-## 🧠 Hallazgos
-
-### 🧑 Proveedor de droga
-
-**Nombre:** Jimmy Jungle
-**Dirección:**
-626 Jungle Ave Apt 2
-Jungle, NY 11111
+9. Se analizó el contenido y los metadatos.
 
 ---
 
-### 🖼 Dato clave en coverpage.jpg
+## Hallazgos
 
-Se identifica referencia a una imagen relacionada con droga (“High Times Magazine”) y evidencia de intercambio entre sospechosos.
-Además, se detecta posible contraseña:
-
-```text
-pw=goodtimes
-```
-
-Este dato es crucial porque permite acceder a archivos protegidos.
+### Proveedor de droga
+Nombre: Jimmy Jungle  
+Dirección:  
+626 Jungle Ave Apt 2  
+Jungle, NY 11111  
 
 ---
 
-### 🏫 Escuelas relacionadas
+### Dato clave en coverpage.jpg
+Se encontró referencia a una imagen relacionada con drogas (High Times Magazine).  
+Además, se identificó una posible contraseña:  
+pw=goodtimes  
 
-Se evidencia que el sospechoso distribuye droga a estudiantes de secundaria:
+Este dato es importante porque permite acceder a archivos protegidos.
 
-```text
+---
+
+### Escuelas relacionadas
+Se evidencia que el sospechoso vendía droga a estudiantes de secundaria, según el texto:
 "targeting the high school students"
-```
 
 ---
 
-### 🕵️ Técnicas de ocultamiento
+### Técnicas de ocultamiento
 
-* Eliminación de archivos
-* Fragmentación de datos
-* Uso de contraseña
-* Ocultamiento en espacio no asignado ($Unalloc)
-* Manipulación de estructura del sistema de archivos
-
----
-
-### 🧪 Proceso del analista
-
-* Verificación de integridad (MD5)
-* Extracción de evidencia
-* Carga en Autopsy
-* Análisis por tipos de archivo
-* Recuperación mediante carving
-* Análisis de texto y metadatos
+- Eliminación de archivos
+- Ocultamiento en espacio no asignado ($Unalloc)
+- Fragmentación de datos
+- Uso de contraseñas
+- Alteración de estructura del sistema de archivos
 
 ---
 
-## 📚 Glosario
+### Proceso del analista
 
-* **MD5:** Huella digital de un archivo que permite verificar su integridad.
-* **Data Source:** Fuente de datos analizada en Autopsy.
-* **Carving:** Técnica para recuperar archivos eliminados.
-* **Unallocated Space ($Unalloc):** Espacio del disco donde quedan datos borrados.
-* **Disk Image:** Copia exacta de un disco utilizada en análisis forense.
+- Verificación de integridad con MD5
+- Extracción de evidencia
+- Carga en Autopsy
+- Análisis por tipos de archivo
+- Recuperación de archivos eliminados
+- Análisis de contenido y metadatos
+
+---
+
+## Glosario
+
+MD5: Huella digital de un archivo que permite verificar su integridad.  
+Data Source: Fuente de datos que se analiza en Autopsy.  
+Carving: Técnica para recuperar archivos eliminados.  
+Unallocated Space ($Unalloc): Espacio donde quedan datos borrados.  
+Disk Image: Copia completa de un disco para análisis forense.
 
 ---
 
-## 🧾 Conclusión
+## Conclusión
 
-El análisis permitió identificar evidencia clara de actividad ilícita relacionada con distribución de drogas, incluyendo comunicación entre sospechosos, direcciones, métodos de ocultamiento y archivos protegidos. Se evidenció intento de eliminación de información, la cual fue recuperada mediante técnicas forenses.
-
----
+Se logró identificar evidencia de actividad ilícita relacionada con distribución de drogas.  
+Se encontraron comunicaciones, direcciones y métodos de ocultamiento de información.  
+También se evidenció que el sospechoso intentó eliminar archivos, los cuales fueron recuperados mediante técnicas forenses.
