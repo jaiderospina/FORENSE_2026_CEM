@@ -1,112 +1,195 @@
-# Autopsy
+# Caso de Estudio Forense con Autopsy
 
-![](images/autopsy.png)
+### Integrantes:
+		CC Juan Carlos Santos Lara
+		CC Andrés Ricardo Pedraza
+		MY Miguel Villanueva
+		MY Andrés Sanchez
+		MY Norberto Murcia
 
-**Autopsy** es una de las herramientas de análisis forense digital más utilizadas en el mundo. Es una interfaz gráfica basada en el motor de búsqueda **The Sleuth Kit**, que permite a los investigadores analizar discos duros, smartphones y tarjetas de memoria para recuperar archivos borrados, examinar el historial de navegación y encontrar evidencias digitales.
+## 1. Descripción del caso
 
-Es una herramienta de código abierto y es fundamental en investigaciones policiales, militares y corporativas debido a su facilidad de uso y potencia.
+Este laboratorio consiste en el análisis forense de una imagen de disquete recuperada, con el objetivo de identificar evidencia relacionada con la posible venta de marihuana por parte de **Joe Jacobs** a estudiantes de secundaria, así como establecer quién sería su proveedor y qué otras instituciones educativas frecuentaba. El reporte policial indica que Jacobs fue arrestado tras ofrecer marihuana a un agente encubierto en el estacionamiento de **Smith Hill High School** y que, durante el allanamiento, se incautó un único disquete que fue posteriormente adquirido en imagen para su examen forense. 
 
+![Texto alternativo](ruta/de/la/imagen.png)
 
+## 2. Evidencia suministrada
 
----
+- **Archivo:** `image.zip`
+- **Hash MD5 publicado:** `b676147f63923e1f428131d59b1d6a72`
+- **Reporte del caso:** `report.txt` :contentReference[oaicite:2]{index=2}
 
-### Manual de Instalación Multiplataforma
+## 3. Objetivo del análisis
 
-A continuación, se detalla el proceso para instalar Autopsy en Windows, Linux y macOS.
+Determinar, a partir de la imagen forense del disquete:
 
-#### 1. Windows (Soporte Nativo)
-Es la plataforma principal para Autopsy y la más sencilla de instalar.
+1. Quién es el proveedor de marihuana de Joe Jacobs y cuál es su dirección.
+2. Qué dato crucial está contenido en `coverpage.jpg` y por qué ese dato es importante.
+3. Qué otras escuelas, además de Smith Hill, frecuentaba Joe Jacobs.
+4. Qué hizo el sospechoso para ocultar o enmascarar cada archivo.
+5. Qué procedimientos realizó el analista para recuperar y examinar el contenido completo de cada archivo.
 
-1.  Ir a la página oficial: [https://www.autopsy.com/download/](https://www.autopsy.com/download/).
-2.  Descargar el instalador de 64 bits (`.msi`).
-3.  Ejecutar el archivo descargado.
-4.  Seguir el asistente de instalación (Next -> Install -> Finish).
-5.  **Nota:** No requiere configuración previa de Java, ya que el instalador de Windows incluye su propio entorno de ejecución.
+## 4. Metodología aplicada
 
----
+El trabajo se desarrolló bajo un enfoque de **aprendizaje por descubrimiento**, en el que el analista explora la evidencia, valida hallazgos y construye conclusiones a partir de los datos recuperados. Este enfoque coincide con el planteamiento del laboratorio, que exige interpretar la evidencia y no limitarse a leer respuestas ya dadas. :contentReference[oaicite:3]{index=3}
 
-#### 2. Linux (Debian/Ubuntu)
-En Linux, Autopsy requiere algunos pasos adicionales ya que se debe configurar Java y The Sleuth Kit manualmente.
+Desde el punto de vista técnico, el procedimiento forense seguido fue:
 
-**Requisitos previos:**
-* Java 17 (u 8, dependiendo de la versión).
-* The Sleuth Kit (TSK).
+1. Descargar la evidencia y el reporte.
+2. Verificar el hash MD5 publicado.
+3. Crear una copia de trabajo para no contaminar la evidencia original.
+4. Descomprimir `image.zip`.
+5. Cargar la imagen en **Autopsy** como sistema **DOS / FAT12**.
+6. Ejecutar funciones de apoyo como:
+   - cálculo de hash,
+   - extracción de strings,
+   - extracción de espacio no asignado,
+   - revisión de metadatos,
+   - análisis hexadecimal,
+   - exportación de contenido bruto (`raw`),
+   - reconstrucción manual de archivos cuando la FAT no mostraba todo el contenido. :contentReference[oaicite:4]{index=4}
 
-**Pasos:**
-1.  **Actualizar el sistema:**
-    ```bash
-    sudo apt update && sudo apt upgrade
-    ```
-2.  **Instala las dependencias y Java:**
-    ```bash
-    sudo apt install openjdk-17-jre openjdk-17-jdk libgstreamer1.0-0 testdisk
-    ```
-3.  **Descarga Autopsy para Linux:**
-    En el sitio oficial, descarga el archivo `.zip` (por ejemplo, `autopsy-4.xx.x.zip`).
-4.  **Descarga e instala The Sleuth Kit:**
-    Descarga el archivo `.deb` de TSK desde el repositorio de Autopsy en GitHub y ejecutarlo:
-    ```bash
-    sudo dpkg -i sleuthkit-java_x.x.x-1_amd64.deb
-    ```
-5.  **Configurar Autopsy:**
-    Descomprimir el zip de Autopsy, entrar en la carpeta y ejecutar el script de configuración:
-    ```bash
-    unzip autopsy-4.xx.x.zip
-    cd autopsy-4.xx.x
-    chmod +x unix_setup.sh
-    ./unix_setup.sh
-    ```
-6.  **Ejecutar:**
-    ```bash
-    bin/autopsy
-    ```
+## 5. Procedimiento en Autopsy
 
----
+### 5.1 Preparación de la evidencia
+- Se descarga `image.zip`.
+- Se verifica el MD5 publicado.
+- Se trabaja sobre una copia.
+- Se descomprime el ZIP para obtener el archivo `image`.
+- Se carga la imagen en Autopsy como evidencia FAT12. :contentReference[oaicite:5]{index=5}
 
-#### 3. macOS
-La instalación en macOS es similar a la de Linux pero requiere el uso de **Homebrew**.
+### 5.2 Indexación y análisis inicial
+Dentro de Autopsy se activan opciones de análisis como:
+- **Extract Strings**
+- **Extract Unallocated**
+- revisión de **Image Details**
+- revisión de **FAT contents**
+- revisión de **File Analyze**. :contentReference[oaicite:6]{index=6}
 
-1.  **Instalar dependencias:**
-    Abrir la terminal e instala Java y Sleuth Kit:
-    ```bash
-    brew install openjdk@17
-    brew install sleuthkit
-    ```
-2.  **Descargar Autopsy:**
-    Descargar el archivo `.zip` para Linux/Mac desde la web oficial.
-3.  **Configurar variables de entorno:**
-    Asegurar que Java esté en el PATH.
-4.  **Ejecutar el script de configuración:**
-    Al igual que en Linux, descomprimir el archivo, entrar en la carpeta por terminal y ejecutar:
-    ```bash
-    sh unix_setup.sh
-    ```
-5.  **Iniciar:**
-    ```bash
-    ./bin/autopsy
-    ```
+### 5.3 Examen de archivos relevantes
 
----
+#### a) `coverpage.jpg`
+Autopsy muestra que el archivo presenta una inconsistencia: el tamaño lógico del archivo es mucho mayor que el espacio aparentemente asignado en la FAT. Por eso fue necesario revisar metadatos, inspeccionar el contenido en hexadecimal, ubicar la firma JPEG/JFIF y reconstruir manualmente los sectores que contenían la imagen para exportarla correctamente. El walkthrough indica que el archivo requería reconstrucción desde los sectores 73 a 103 para recuperar el JPEG completo. :contentReference[oaicite:7]{index=7}
 
-### Primeros pasos tras la instalación
-Una vez abierto Autopsy, el flujo de trabajo básico es:
+#### b) `Jimmy Jungle.doc`
+Autopsy reconoce este archivo como **eliminado**. Luego, mediante revisión de metadatos y de los sectores asociados, se exporta el contenido bruto y se renombra con extensión `.doc` para abrirlo y examinarlo. :contentReference[oaicite:8]{index=8}
 
-1.  **Create New Case:** Definir el nombre del caso y la ruta donde se guardarán los datos.
-2.  **Add Data Source:** Seleccionar el disco, imagen forense (E01, RAW) o carpeta que deseas analizar.
-3.  **Configure Ingest Modules:** Eligir qué se desea que Autopsy busque (palabras clave, correos, archivos multimedia, etc.).
-4.  **Análisis:** Una vez terminado el proceso, explorar los resultados en el árbol de navegación a la izquierda.
+#### c) `Scheduled Visits.exe`
+El análisis de metadatos mostró que el archivo no debía tratarse directamente como un ejecutable normal. Al exportarlo y revisar su estructura, se evidenció que realmente correspondía a un archivo comprimido/protegido, dentro del cual existía una hoja de cálculo llamada `Scheduled Visits.xls`. Como una primera extracción quedó incompleta, fue necesario ampliar el rango de bloques exportados hasta reconstruir el contenido usable. Luego se aplicó la contraseña encontrada en `coverpage.jpg` para abrirlo. :contentReference[oaicite:9]{index=9}
+
+## 6. Respuestas del caso
+
+### 6.1 ¿Quién es el proveedor de marihuana de Joe Jacobs y cuál es la dirección listada del proveedor?
+
+El proveedor es **Jimmy Jungle**.  
+La dirección listada es:
+
+**626 Jungle Ave, Apt 2, Jungle, NY 11111**. :contentReference[oaicite:10]{index=10}
 
 ---
 
-Referencias:
+### 6.2 ¿Qué dato crucial está disponible dentro de `coverpage.jpg` y por qué el dato es crucial?
 
-- https://www.autopsy.com/
-- https://github.com/sleuthkit/autopsy/releases/
-- https://knowledge.iadb.org/es/conocimiento-abierto/codigo-para-el-desarrollo/solucion-de-codigo-abierto/autopsy
-- [Manual Básico Autopsy](Manua_Basico_Autopsy.pdf)
+El dato crucial hallado dentro de `coverpage.jpg` es la cadena:
+
+**`pw=goodtimes`**. :contentReference[oaicite:11]{index=11}
+
+Ese dato es crucial porque corresponde a la **contraseña** necesaria para acceder al archivo protegido asociado a `Scheduled Visits`, dentro del cual se encuentra la hoja de cálculo con información de visitas/programación. Esa información permite vincular a Joe Jacobs con otras escuelas aparte de Smith Hill, lo cual fortalece la hipótesis de distribución en múltiples colegios. :contentReference[oaicite:12]{index=12}
+
+**Nota:** en el resumen final del repositorio aparece una errata escribiendo `gootimes`, pero en el desarrollo técnico paso a paso se muestra claramente la recuperación de la cadena **`pw=goodtimes`**, que es la que efectivamente se usa para extraer el archivo protegido. :contentReference[oaicite:13]{index=13}
 
 ---
 
-## Actividad en clase.
+### 6.3 ¿Qué otras escuelas vecinas a Smith Hill frecuentaba Joe Jacobs?
 
-## Instalar la última versión de Autopsy. 
+Además de **Smith Hill High School**, Joe Jacobs frecuentaba las siguientes escuelas:
+
+- **Key High School**
+- **Leetch High School**
+- **Birard High School**
+- **Richter High School**
+- **Hull High School** :contentReference[oaicite:14]{index=14}
+
+---
+
+### 6.4 Para cada archivo, ¿qué procesos hizo el sospechoso para enmascararlo de otros?
+
+#### `Jimmy Jungle.doc`
+- El archivo fue **eliminado** del sistema de archivos, pero seguía recuperable desde la imagen del disquete. :contentReference[oaicite:15]{index=15}
+
+#### `coverpage.jpg`
+- El archivo presentaba una **asignación inconsistente/incompleta en la FAT**, por lo que no podía visualizarse normalmente como una imagen JPEG estándar.
+- Además, la contraseña estaba **oculta al final del contenido recuperado**, de modo que no era visible a simple vista sin inspección profunda de strings/hex.  
+Esto sugiere una maniobra de ocultamiento basada en estructura FAT y recuperación manual, más que en simple renombrado. Esta parte es una **inferencia técnica** a partir de la inconsistencia descrita en los metadatos y del proceso de carving manual mostrado en el walkthrough. :contentReference[oaicite:16]{index=16}
+
+#### `Scheduled Visits.exe`
+- El archivo fue **disfrazado mediante cambio de extensión**.
+- En realidad, su contenido correspondía a un archivo comprimido/protegido que contenía `Scheduled Visits.xls`.
+- Además, estaba **protegido por contraseña**, lo que añadía una segunda capa de ocultamiento. :contentReference[oaicite:17]{index=17}
+
+---
+
+### 6.5 ¿Qué procesos realizó el analista para examinar el contenido completo de cada archivo?
+
+#### Sobre la evidencia general
+- Verificación del hash publicado.
+- Trabajo sobre copia de la evidencia.
+- Descompresión del ZIP.
+- Carga en Autopsy como imagen FAT12.
+- Extracción de strings y contenido no asignado.
+- Revisión de metadatos, FAT contents y vista hexadecimal. :contentReference[oaicite:18]{index=18}
+
+#### Para `coverpage.jpg`
+- Revisión en **HEX Display**.
+- Confirmación de inconsistencia entre tamaño lógico y sectores visibles en FAT.
+- Cálculo del número de sectores necesarios.
+- Búsqueda manual de la firma **JPEG/JFIF**.
+- Reconstrucción manual del rango de sectores.
+- Exportación del contenido bruto y cambio de extensión a `.jpeg`.
+- Revisión adicional del contenido para ubicar la cadena `pw=goodtimes`. :contentReference[oaicite:19]{index=19}
+
+#### Para `Jimmy Jungle.doc`
+- Revisión de metadatos.
+- Identificación del archivo como borrado.
+- Determinación de sectores asociados.
+- Exportación del contenido bruto.
+- Renombrado del archivo exportado a `.doc`.
+- Apertura del documento para extraer la información del proveedor. :contentReference[oaicite:20]{index=20}
+
+#### Para `Scheduled Visits.exe`
+- Revisión de metadatos.
+- Detección de que la primera extracción no contenía todo el archivo.
+- Ampliación del rango de bloques exportados.
+- Exportación del contenido reconstruido.
+- Cambio de extensión a un formato comprimido manejable.
+- Descompresión del archivo.
+- Uso de la contraseña `goodtimes`.
+- Apertura del archivo `Scheduled Visits.xls` para revisar el contenido. :contentReference[oaicite:21]{index=21}
+
+## 7. Hallazgos forenses principales
+
+El análisis del disquete permite establecer tres hallazgos relevantes:
+
+1. **Identificación del proveedor**
+   - Se recuperó un documento que identifica como proveedor a **Jimmy Jungle**, con dirección física específica. :contentReference[oaicite:22]{index=22}
+
+2. **Existencia de mecanismo deliberado de ocultamiento**
+   - Los archivos no estaban disponibles de forma normal; algunos estaban eliminados, otros parcialmente ocultos o disfrazados mediante cambio de extensión y protección por contraseña. :contentReference[oaicite:23]{index=23}
+
+3. **Vinculación con otras escuelas**
+   - El contenido recuperado muestra que Joe Jacobs no frecuentaba únicamente Smith Hill, sino también varios colegios adicionales, lo que refuerza la hipótesis de actividad reiterada y no aislada. :contentReference[oaicite:24]{index=24}
+
+## 8. Conclusión
+
+Del examen forense de la imagen del disquete se concluye que existe evidencia digital útil para la investigación contra Joe Jacobs. Se logró:
+
+- identificar a su proveedor de marihuana,
+- recuperar una contraseña escondida dentro de un archivo aparentemente inocuo,
+- abrir un archivo protegido que contenía información operativa relevante,
+- y establecer que Jacobs frecuentaba múltiples escuelas además de Smith Hill. :contentReference[oaicite:25]{index=25}
+
+La evidencia sugiere además que el sospechoso intentó dificultar el análisis mediante:
+- borrado de archivos,
+- alteración/aprovechamiento de la estructura FAT,
+- cambio de extensiones,
+- compresión y protección por contraseña. :contentReference[oaicite:26]{index=26}
