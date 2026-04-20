@@ -33,4 +33,6 @@ Su misión es analizar un disco flexible recuperado y responder las preguntas fo
 ## Referencias a material autopsy.
 
 - https://peritoinformaticocolegiado.es/blog/peritaje-informatico-forense-con-autopsy/
-- 
+- https://www.youtube.com/watch?v=DCJFL6B1G6c
+- https://www.youtube.com/watch?v=hSIIcjUyKrk
+- https://youtu.be/5b7D3YOkZmc
