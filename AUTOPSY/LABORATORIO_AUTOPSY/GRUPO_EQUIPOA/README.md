@@ -7,6 +7,7 @@ Mayor Galindo Durán Gildardo
 Mayor Varón Bravo Manuel
 Mayor Florez Jaimes Juan
 Capitán Mesa Mantilla Yesid
+my romero fernandez nelson
 
 ## Objetivo
 Analizar una evidencia digital (image.zip) utilizando Autopsy para identificar información relevante en un caso forense.
