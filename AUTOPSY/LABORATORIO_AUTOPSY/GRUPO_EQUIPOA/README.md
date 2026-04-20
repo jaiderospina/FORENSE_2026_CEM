@@ -81,3 +81,5 @@ Disk Image: Copia completa de un disco para análisis forense.
 Se logró identificar evidencia de actividad ilícita relacionada con distribución de drogas.  
 Se encontraron comunicaciones, direcciones y métodos de ocultamiento de información.  
 También se evidenció que el sospechoso intentó eliminar archivos, los cuales fueron recuperados mediante técnicas forenses.
+<img width="1702" height="897" alt="846fdf7d-c228-40a0-96a9-5b0e5f079755" src="https://github.com/user-attachments/assets/3c80da94-01b3-4e96-a13b-31dd388d3ed4" />
+
