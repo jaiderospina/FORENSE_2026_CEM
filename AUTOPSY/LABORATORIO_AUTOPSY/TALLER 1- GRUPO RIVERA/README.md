@@ -248,6 +248,18 @@ El análisis forense permitió establecer que la imagen incautada contenía evid
 
 El caso evidencia el uso de técnicas básicas de ocultamiento digital, como eliminación de archivos, uso de extensiones engañosas y protección mediante contraseña. Aunque Autopsy 4.23.0 presentó limitaciones durante el análisis, estas fueron superadas con apoyo de comandos de terminal y documentación complementaria, permitiendo reconstruir la evidencia y responder los objetivos de la investigación.
 
+### Limitaciones de Autopsy 4.23.0 y soluciones aplicadas
+
+Durante el desarrollo del laboratorio se evidenciaron algunas limitaciones en la versión utilizada de Autopsy. Para no detener el análisis, se complementó el trabajo con comandos ejecutados desde la terminal.
+
+| Limitación evidenciada en Autopsy 4.23.0 | Impacto en el análisis | Solución aplicada mediante terminal |
+| --- | --- | --- |
+| Algunos módulos de ingestión no eran compatibles con el entorno utilizado. | El análisis automático no podía ejecutarse con todos los módulos disponibles. | Se desmarcaron los módulos incompatibles y se continuó con los módulos funcionales para evitar conflictos. |
+| No fue posible obtener desde Autopsy toda la información necesaria para trabajar con **Jump to Offset** o con segmentos del archivo `cover page.jpgc`. | La extracción de la imagen no pudo completarse directamente desde la interfaz gráfica. | Se usó `dd` para extraer manualmente el fragmento correspondiente desde la imagen forense y reconstruir el archivo. |
+| El archivo `Scheduled Visits.exe` no abrió correctamente desde la interfaz gráfica. | No era posible consultar el contenido del archivo recuperado de forma directa. | Se extrajo el segmento con `dd`, se validó el tipo real del archivo con `file` y se renombró para tratarlo como archivo comprimido. |
+| La extensión `.exe` no correspondía al contenido real del archivo. | Podía interpretarse erróneamente como un ejecutable, cuando en realidad contenía información comprimida. | Se revisó el encabezado hexadecimal y se comprobó el tipo de archivo desde la terminal antes de renombrarlo. |
+| La contraseña del archivo protegido no pudo confirmarse completamente desde los metadatos del primer archivo en nuestra ejecución. | No era posible descomprimir el archivo protegido únicamente con la información recuperada desde Autopsy. | Se utilizó la contraseña del caso guía, `goodtimes`, y se documentó la limitación encontrada durante el análisis. |
+
 ## Estructura del repositorio
 
 ```text
