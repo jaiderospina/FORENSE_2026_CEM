@@ -1,8 +1,8 @@
-A continuación se presenta un manual estructurado y comparativo sobre los **formatos de captura de evidencia forense digital**, con un enfoque técnico pero comprensible, útil tanto en contextos académicos como operativos.
-
-# **MFORMATOS DE CAPTURA DE EVIDENCIA FORENSE DIGITAL**
+# **FORMATOS DE CAPTURA DE EVIDENCIA FORENSE DIGITAL**
 
 ## **1. Fundamentación de la captura forense**
+
+![Captura Evidencia](images/CapturaIEvidencia.png)
 
 La captura de evidencia digital constituye el punto de partida en cualquier proceso de análisis forense. Su objetivo es **preservar la integridad, autenticidad y trazabilidad de la información**, evitando alteraciones que comprometan su validez probatoria.
 
@@ -46,22 +46,22 @@ Los formatos se pueden agrupar en tres categorías principales:
 
 ---
 
-## ** Tipos de Adquisición**
+## Tipos de Adquisición
 
 
-### ** Captura física**
+### Captura física
 
 * Copia bit a bit de todo el dispositivo.
 * Incluye espacio no asignado y sectores ocultos.
 * Permite recuperar información eliminada.
 
-### ** Captura lógica**
+### Captura lógica
 
 * Copia de archivos visibles del sistema.
 * Más rápida, pero menos completa.
 * No incluye datos borrados.
 
-### ** Captura en vivo**
+### Captura en vivo
 
 * Se realiza con el sistema encendido.
 * Permite obtener datos volátiles (RAM, procesos activos).
@@ -69,9 +69,9 @@ Los formatos se pueden agrupar en tres categorías principales:
 
 ---
 
-## **Formatos Más Empleados de captura de evidencia**
+## Formatos Más Empleados de captura de evidencia
 
-### **FORMATO RAW / DD (Formato crudo)**
+### FORMATO RAW / DD (Formato crudo)
 
 **Descripción:**
 
@@ -107,7 +107,7 @@ Es el formato más básico. Consiste en una copia exacta bit a bit del medio.
 
 ---
 
-### **Formato EWF (Expert Witness Format)**  – E01
+### Formato EWF (Expert Witness Format)  – E01
 
 **Descripción:**
 Formato desarrollado para herramientas como EnCase. Es uno de los más utilizados en entornos forenses profesionales.
@@ -143,7 +143,7 @@ Formato desarrollado para herramientas como EnCase. Es uno de los más utilizado
 
 ---
 
-### **3.3 Formato AFF (Advanced Forensic Format)**
+### 3.3 Formato AFF (Advanced Forensic Format)
 
 **Descripción:**
 Formato abierto diseñado para superar limitaciones del RAW y EWF.
@@ -166,11 +166,11 @@ Formato abierto diseñado para superar limitaciones del RAW y EWF.
 * Curva de aprendizaje mayor
 
 **Extensión común:**
-`.aff`, `.afd`, `.afm`
+`.aff`, `.afd` (dividido), `.afm` (metadatos separados)
 
 ---
 
-### **3.4 Formato SMART (ASR Data)**
+### 3.4 Formato SMART (ASR Data)
 
 **Descripción:**
 Utilizado por herramientas específicas como ASR Data.
@@ -192,10 +192,10 @@ Utilizado por herramientas específicas como ASR Data.
 
 ---
 
-### **3.5 Formato AD1 (AccessData Logical Image)**
+### 3.5 Formato AD1 (AccessData Logical Image)
 
 **Descripción:**
-Formato orientado a adquisiciones lógicas, usado por FTK.
+Formato propietario de AccessData., orientado a adquisiciones lógicas. Empleado por FTK.
 
 **Características:**
 
@@ -214,7 +214,7 @@ Formato orientado a adquisiciones lógicas, usado por FTK.
 
 ---
 
-## ** Comparación de formatos**
+## Comparación de formatos
 
 | Criterio                  | RAW (dd)   | EWF (E01) | AFF       | AD1       |
 | ------------------------- | ---------- | --------- | --------- | --------- |
@@ -228,23 +228,30 @@ Formato orientado a adquisiciones lógicas, usado por FTK.
 
 ---
 
-## ** Criterios para seleccionar un formato**
+###  Criterios de selección del formato.
 
-La elección del formato depende del contexto investigativo:
+1. ### Según el contexto
 
-### **Escenarios recomendados**
+| Contexto                | Formato recomendado |
+| ----------------------- | ------------------- |
+| Judicial                | E01                 |
+| Investigación académica | RAW / AFF           |
+| Respuesta a incidentes  | E01 / AD1           |
+| Análisis rápido         | AD1                 |
 
-* **Análisis profundo / recuperación de datos eliminados:**
-  → RAW o EWF
+2. ### Según el tamaño del medio
 
-* **Entornos judiciales con documentación rigurosa:**
-  → EWF
+* Discos grandes → E01 (compresión)
+* Discos pequeños → RAW viable
 
-* **Investigación académica o entornos abiertos:**
-  → AFF
+3. ### Según herramientas disponibles
 
-* **Recolección rápida de evidencia específica:**
-  → AD1
+Ejemplo:
+
+* EnCase → E01
+* FTK → AD1 / E01
+* Autopsy/Sleuth Kit → RAW / AFF
+
 
 ---
 
@@ -263,22 +270,52 @@ La elección del formato depende del contexto investigativo:
 ### Paso a paso:
 
 1. **Aislamiento del dispositivo**
-2. Uso de bloqueador de escritura (write blocker)
-3. Selección del formato:
+2. **Uso de bloqueador de escritura (write blocker)**
+3. **Selección del formato:**
 
    * RAW → análisis puro
    * E01 → uso judicial
    * AFF → investigación avanzada
-4. Generación de hash:
+4. **Generación de hash:**
 
    * Antes
    * Después
-5. Documentación:
+5. **Documentación:**
 
    * Fecha/hora
    * Herramienta
    * Investigador
-6. Custodia de evidencia (chain of custody)
+6. **Custodia de evidencia.**
+
+---
+## Conclusión
+
+No existe un “mejor formato universal”. La elección depende de:
+
+* Objetivo de la investigación
+* Requisitos legales
+* Herramientas disponibles
+* Volumen de datos
+
+Sin embargo:
+
+* **E01** es el estándar de facto en entornos judiciales
+* **RAW** sigue siendo el más transparente
+* **AFF** es el más flexible técnicamente
+* **AD1** es útil para análisis lógico rápido
+
+---
+
+## Ejemplo práctico aplicado
+
+**Escenario:** Incidente de ransomware en empresa
+
+![Esceario incidente ransoware](images/CasoEjemplo.png)
+
+* Captura de disco: E01
+* Captura de archivos críticos: AD1
+* Validación: SHA-256 // MD5
+* Análisis: Autopsy + FTK
 
 ---
 
