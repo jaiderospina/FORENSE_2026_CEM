@@ -51,6 +51,13 @@ b676147f63923e1f428131d59b1d6a72
 
 Esta validación permitió confirmar que se estaba trabajando sobre la evidencia correcta antes de incorporarla al caso forense.
 
+Comandos utilizados para preparar y validar la evidencia:
+
+```bash
+unzip image.zip
+md5sum image.zip
+```
+
 <img src="fotos/Paso-1.png" alt="Preparación inicial de la evidencia y validación MD5" width="700">
 
 ## Metodología de análisis
@@ -123,6 +130,15 @@ En el caso guía, este archivo corresponde a una imagen que contiene una pista c
 
 Por esta limitación, se recurrió a la terminal para extraer manualmente el contenido mediante comandos como `dd`, reconstruir la imagen y visualizarla fuera de Autopsy.
 
+Comandos utilizados para extraer y reconstruir la imagen:
+
+```bash
+dd if=image bs=512 skip=73 count=36 of=coverpage.raw
+file coverpage.raw
+mv coverpage.raw coverpage.jpg
+open coverpage.jpg
+```
+
 <img src="fotos/extracción archivo 1.png" alt="Extracción manual del archivo cover page" width="700">
 
 <img src="fotos/captura de imagen.png" alt="Visualización de la imagen recuperada" width="700">
@@ -161,6 +177,15 @@ Al intentar abrirlo directamente se presentó un error, lo que confirmó que el 
 <img src="fotos/archivo 3 error.png" alt="Error al intentar abrir el archivo 3" width="700">
 
 Para recuperar el contenido, se utilizaron comandos en la terminal con el fin de extraer el segmento correcto de la imagen, renombrar el archivo y probar su apertura con el formato adecuado.
+
+Comandos utilizados para recuperar y abrir el archivo protegido:
+
+```bash
+dd if=image bs=512 skip=104 count=53 of=visits.raw
+file visits.raw
+mv visits.raw visits.zip
+open visits.zip
+```
 
 <img src="fotos/extracción archivo 3.png" alt="Comandos usados para extraer el archivo 3" width="700">
 
