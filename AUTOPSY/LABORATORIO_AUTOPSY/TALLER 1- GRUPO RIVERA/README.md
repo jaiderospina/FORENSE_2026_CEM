@@ -2,6 +2,13 @@
 
 Este repositorio documenta el desarrollo de un ejercicio práctico de análisis forense digital realizado con **Autopsy 4.23.0**. A lo largo del laboratorio se creó un caso forense, se incorporó una imagen como fuente de datos, se revisaron archivos relevantes y se complementó el trabajo con comandos de terminal cuando las limitaciones de la herramienta impidieron avanzar únicamente desde la interfaz gráfica.
 
+## Integrantes del grupo
+
+- MY. Samir Salek
+- MY. Cristian Meza
+- MY. Jhon Colorado
+- MY. Merly Rivera
+  
 ## Objetivo
 
 Realizar un análisis forense básico sobre una imagen digital para identificar evidencias, revisar metadatos, recuperar archivos de interés y documentar de manera clara el procedimiento seguido durante la investigación.
