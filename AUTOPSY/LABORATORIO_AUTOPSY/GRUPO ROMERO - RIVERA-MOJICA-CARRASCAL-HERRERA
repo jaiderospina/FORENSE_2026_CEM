@@ -1,1 +1,100 @@
+# Taller de Forense Digital
 
+Proyecto académico desarrollado para la asignatura **Forense Digital** en la **Escuela Superior de Guerra**, con énfasis en recuperación de archivos, análisis de metadatos, trazabilidad temporal y examen lógico de evidencia digital.
+
+## Información general
+
+**Institución:** Fuerzas Militares de Colombia – Escuela Superior de Guerra  
+**Asignatura:** Forense Digital  
+**Profesor:** Jaider Ospina  
+**Lugar y fecha:** Bogotá, D. C., abril de 2026
+
+## Integrantes
+
+- MY Herrera Zarta Oscar
+- MY Rivera Ortiz Jesus
+- MY Mojica Ortiz Alexander
+- MY Carrascal Ramiro Alfonso
+- MY Christiam Alberto Romero Rios
+
+## Descripción del trabajo
+
+Este taller documenta un ejercicio de análisis forense digital orientado a la recuperación y examen de archivos ocultos o eliminados dentro de un sistema de archivos. El enfoque principal fue identificar evidencia residual, interpretar metadatos y reconstruir el contenido de archivos relevantes mediante herramientas de análisis forense.
+
+## Objetivos
+
+- Recuperar archivos eliminados lógicamente que aún conservaban contenido en disco.
+- Analizar metadatos relevantes para establecer trazabilidad temporal.
+- Determinar el tipo real de archivo, software asociado y fechas de creación/modificación.
+- Examinar el contenido íntegro de documentos e imágenes recuperadas.
+- Documentar el procedimiento técnico seguido durante la investigación.
+
+## Hallazgos principales
+
+### 1. Archivo `coverpage.jpg`
+
+- Se identificó como un archivo binario con tipo MIME `application/octet-stream`.
+- Su valor de tipo no permitió atribuir con certeza el programa que lo creó.
+- Los metadatos disponibles resultaron útiles para apoyar la trazabilidad temporal del caso.
+
+### 2. Archivo `Jimmy Jungle.doc`
+
+A partir de los metadatos extraídos se identificó lo siguiente:
+
+- **Tipo de archivo:** `application/msword`
+- **Aplicación asociada:** `Microsoft Word 10.0`
+- **Título interno del documento:** `Jimmy Jungle`
+- **Fecha de creación:** `2002-04-15T20:30:00Z`
+- **Fecha de modificación:** `2002-04-15T21:42:00Z`
+
+Esto permitió inferir que el documento fue creado y editado en una versión antigua de Microsoft Word, correspondiente al entorno de Office 2002.
+
+### 3. Archivos recuperados
+
+Se concluyó que algunos archivos fueron **eliminados lógicamente** por el sospechoso. Aunque el sistema operativo ya no los mostraba como activos, su contenido seguía presente físicamente en el disco, lo que permitió su recuperación mediante análisis forense.
+
+## Metodología aplicada
+
+Como parte del proceso investigativo, se desarrollaron las siguientes actividades:
+
+1. Identificación de archivos eliminados dentro del sistema de archivos.
+2. Revisión de evidencia en vistas de **texto**, **metadatos** y **hexadecimal**.
+3. Verificación de firmas de archivo para confirmar el tipo real de cada evidencia.
+4. Revisión de fechas, tamaños y posibles alteraciones.
+5. Extracción y recuperación del contenido útil mediante técnicas de análisis y carving.
+6. Apertura posterior con la herramienta adecuada para validar el contenido completo.
+
+## Herramientas y técnicas
+
+- **Autopsy** para análisis lógico y recuperación de evidencia.
+- Revisión de **metadatos** para establecer contexto y trazabilidad.
+- Inspección **hexadecimal** para validar estructura y contenido residual.
+- **File carving** para recuperación de archivos parcialmente ocultos o eliminados.
+
+## Consideraciones forenses
+
+- La eliminación lógica no implica la desaparición inmediata del contenido en disco.
+- Los metadatos son fundamentales para reconstruir la historia de un archivo.
+- El tipo MIME genérico no siempre permite identificar el software de origen.
+- La validación cruzada entre contenido, metadatos y estructura binaria mejora la confiabilidad del análisis.
+
+## Estructura sugerida del repositorio
+
+```text
+.
+├── README.md
+├── evidencia/
+│   ├── documentos_recuperados/
+│   ├── imagenes/
+│   └── metadatos/
+└── informe/
+    └── taller_forense.docx
+```
+
+## Nota de seguridad
+
+Este repositorio está orientado exclusivamente a fines académicos y de análisis forense digital. No incluye ni reproduce datos sensibles que puedan facilitar actividades ilegales o riesgosas.
+
+## Fuente base
+
+Contenido elaborado con base en el documento **GRUPO FORENSE.docx** proporcionado por el usuario.
