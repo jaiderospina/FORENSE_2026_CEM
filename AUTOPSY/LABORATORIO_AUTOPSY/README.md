@@ -9,6 +9,9 @@ Para ello apoyarse y complementar la siguiente guía.
 
 Nota:  El respositorio  https://github.com/SVelizDonoso/forense-autopsy?tab=readme-ov-file  desarrolla el caso en cuestión, en virtud de lo cual puede  ser emplado como complemento y guía de diseño del respositorio.
 
+# Metodología
+
+El laboratorio se fundamenta en un enfoque de aprendizaje por descubrimiento, también denominado aprendizaje exploratorio. En este modelo, se asume un rol activo en la construcción del conocimiento, mediante la investigación, la experimentación y el análisis de los resultados obtenidos. En lugar de recibir información de forma directa, se promueve que cada participante explore el entorno planteado y derive sus propias conclusiones. Este enfoque se alinea con los principios del constructivismo, donde el aprendizaje se genera a partir de la experiencia y la interacción con el contexto de estudio.
 
 # OBJETIVOS
 
@@ -30,3 +33,4 @@ Su misión es analizar un disco flexible recuperado y responder las preguntas fo
 ## Referencias a material autopsy.
 
 - https://peritoinformaticocolegiado.es/blog/peritaje-informatico-forense-con-autopsy/
+- 
