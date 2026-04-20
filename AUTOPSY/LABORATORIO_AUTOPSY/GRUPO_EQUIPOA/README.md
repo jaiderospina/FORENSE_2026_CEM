@@ -31,6 +31,7 @@ Analizar una evidencia digital (image.zip) utilizando Autopsy para identificar i
    - $Unalloc
 8. Se recuperaron archivos eliminados.
 9. Se analizó el contenido y los metadatos.
+<img width="1409" height="607" alt="image" src="https://github.com/user-attachments/assets/e27b1300-05cc-4ad9-8bb9-87356f0d557e" />
 
 ## Hallazgos
 
