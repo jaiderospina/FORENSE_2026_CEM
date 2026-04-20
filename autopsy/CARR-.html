@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taller Forense Digital - Diseño Ciber</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0a1628;
+      --panel: rgba(10, 22, 40, 0.72);
+      --line: rgba(0, 255, 255, 0.18);
+      --cyan: #36f3ff;
+      --cyan2: #7ef9ff;
+      --blue: #4a7dff;
+      --text: #d9f7ff;
+      --muted: #95b8c9;
+      --green: #73ffb5;
+      --warning: #ffd166;
+      --shadow: 0 0 24px rgba(54, 243, 255, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(74,125,255,0.18), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(54,243,255,0.12), transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(115,255,181,0.08), transparent 30%),
+        linear-gradient(135deg, #030813 0%, var(--bg) 40%, #02060d 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .grid-overlay::before,
+    .grid-overlay::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .grid-overlay::before {
+      background-image:
+        linear-gradient(rgba(126, 249, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(126, 249, 255, 0.06) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.25));
+    }
+
+    .grid-overlay::after {
+      background: linear-gradient(180deg, rgba(3,8,19,0.0), rgba(3,8,19,0.45) 55%, rgba(3,8,19,0.9));
+    }
+
+    .scan {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent, rgba(54,243,255,0.06), transparent);
+      animation: scan 8s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes scan {
+      from { transform: translateY(-100%); }
+      to   { transform: translateY(100%); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(8,17,31,0.86), rgba(7,17,31,0.64));
+      box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,0.03);
+      border-radius: 22px;
+      padding: 28px;
+      margin-top: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -40% auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(54,243,255,0.15), transparent 62%);
+      filter: blur(6px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 12px;
+      border: 1px solid rgba(54,243,255,0.24);
+      border-radius: 999px;
+      background: rgba(54,243,255,0.08);
+      color: var(--cyan2);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { margin: 0; }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1.02;
+      letter-spacing: 0.02em;
+      text-shadow: 0 0 18px rgba(54,243,255,0.14);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 880px;
+      margin-top: 14px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.95fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .stats, .video-card, .card, .timeline, .table-wrap {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(126,249,255,0.12);
+    }
+
+    .stat .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .stat .value {
+      font-size: 24px;
+      color: var(--cyan2);
+      font-weight: 700;
+    }
+
+    .video-card {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    .video-card a,
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #00141a;
+      background: linear-gradient(90deg, var(--cyan), var(--green));
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      box-shadow: 0 0 18px rgba(54,243,255,0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .video-card a:hover,
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 24px rgba(54,243,255,0.34);
+    }
+
+    nav {
+      position: sticky;
+      top: 12px;
+      z-index: 3;
+      margin: 16px 0 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(4, 11, 22, 0.76);
+      backdrop-filter: blur(12px);
+    }
+
+    nav a {
+      color: var(--cyan2);
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(126,249,255,0.14);
+      background: rgba(255,255,255,0.02);
+      font-size: 14px;
+    }
+
+    nav a:hover { background: rgba(54,243,255,0.10); }
+
+    section { margin-top: 20px; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-title .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 18px var(--cyan);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card { padding: 20px; }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: var(--cyan2);
+    }
+
+    .card p, .card li {
+      color: var(--text);
+      line-height: 1.72;
+      font-size: 16px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .warning {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255, 209, 102, 0.10);
+      color: #ffe7a4;
+      border: 1px solid rgba(255, 209, 102, 0.20);
+    }
+
+    ul.clean {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul.clean li {
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(126,249,255,0.10);
+    }
+
+    ul.clean li:last-child { border-bottom: none; }
+
+    .timeline {
+      padding: 20px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 20px 28px;
+      border-left: 2px solid rgba(126,249,255,0.16);
+      margin-left: 8px;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 18px rgba(54,243,255,0.55);
+    }
+
+    .timeline-item h4 {
+      margin: 0 0 6px;
+      color: var(--cyan2);
+      font-size: 18px;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      padding: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(126,249,255,0.12);
+    }
+
+    th {
+      color: var(--cyan2);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      background: rgba(255,255,255,0.02);
+    }
+
+    code.inline {
+      color: var(--green);
+      background: rgba(115,255,181,0.08);
+      padding: 3px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(115,255,181,0.18);
+    }
+
+    .footer {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.02);
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      nav { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-overlay"></div>
+  <div class="scan"></div>
+
+  <div class="container">
+    <header class="hero">
+      <div class="eyebrow">Informe HTML · Diseño Ciber · Autopsy</div>
+      <h1>Taller Forense Digital</h1>
+      <p class="subtitle">
+        Informe en formato HTML con estética ciber sobre el análisis forense realizado en Autopsy. El contenido resume hallazgos,
+        patrones, metadatos, línea de tiempo y procedimiento de análisis, con una presentación visual lista para repositorio o navegador.
+      </p>
+
+      <div class="hero-grid">
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Asignatura</div>
+            <div class="value">Forense Digital</div>
+          </div>
+          <div class="stat">
+            <div class="label">Profesor</div>
+            <div class="value">Jaider Ospina</div>
+          </div>
+          <div class="stat">
+            <div class="label">Fecha</div>
+            <div class="value">Abril 2026</div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div>
+            <h3 style="margin-bottom:10px;color:var(--cyan2);">Recurso audiovisual</h3>
+            <p class="muted" style="margin-top:0;">
+              Se agregó el enlace de YouTube solicitado para integrarlo dentro del informe y poder abrirlo directamente desde la interfaz.
+            </p>
+          </div>
+          <a href="https://youtu.be/vVmJfol--F8" target="_blank" rel="noopener noreferrer">Abrir video en YouTube</a>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <a href="#equipo">Equipo</a>
+      <a href="#hallazgos">Hallazgos</a>
+      <a href="#patrones">Patrones</a>
+      <a href="#metadatos">Metadatos</a>
+      <a href="#procedimiento">Procedimiento</a>
+      <a href="#conclusion">Conclusión</a>
+      <a href="https://youtu.be/vVmJfol--F8" target="_blank" rel="noopener noreferrer">YouTube</a>
+    </nav>
+
+    <section id="equipo">
+      <div class="section-title"><span class="dot"></span><h2>Identificación del informe</h2></div>
+      <div class="cards">
+        <article class="card">
+          <h3>Institución</h3>
+          <p><strong>Fuerzas Militares de Colombia</strong><br>Escuela Superior de Guerra</p>
+          <p><strong>Asignatura:</strong> Forense Digital<br><strong>Profesor:</strong> Jaider Ospina</p>
+        </article>
+
+        <article class="card">
+          <h3>Integrantes</h3>
+          <ul class="clean">
+            <li>MY Herrera Zarta Oscar</li>
+            <li>MY Rivera Ortiz Jesus</li>
+            <li>MY Mojica Ortiz Alexander</li>
+            <li>MY Carrascal Ramiro Alfonso</li>
+            <li>MY Christiam Alberto Romero Rios</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="hallazgos">
+      <div class="section-title"><span class="dot"></span><h2>Hallazgos relevantes</h2></div>
+      <div class="cards">
+        <article class="card">
+          <h3>Archivo <code class="inline">coverpage.jpg</code></h3>
+          <p>
+            El dato clave disponible fue la presencia de <strong>metadatos útiles para trazabilidad</strong>, permitiendo ubicar el archivo
+            dentro de la línea de tiempo de la investigación y relacionarlo con otros artefactos del caso.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Dato omitido por seguridad</h3>
+          <p>
+            Se excluyó del informe la respuesta que identifica a un posible proveedor de sustancias y su dirección. Esa parte no se muestra
+            en esta versión HTML por seguridad.
+          </p>
+          <div class="warning">Versión saneada del informe para visualización segura.</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="patrones">
+      <div class="section-title"><span class="dot"></span><h2>Patrones identificados</h2></div>
+      <div class="cards">
+        <article class="card">
+          <h3>Escuelas asociadas</h3>
+          <ul class="clean">
+            <li>Key High School <strong>(B)</strong></li>
+            <li>Leetch High School <strong>(C)</strong></li>
+            <li>Birard High School <strong>(D)</strong></li>
+            <li>Richter High School <strong>(E)</strong></li>
+            <li>Hull High School <strong>(F)</strong></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Análisis de patrones</h3>
+          <ul>
+            <li><strong>Temporal:</strong> secuencia fija de Monday a Friday.</li>
+            <li><strong>Secuencial:</strong> rotación cíclica A, B, C, D, E, F.</li>
+            <li><strong>Codificación:</strong> cada colegio usa una letra como identificador.</li>
+            <li><strong>Repetición:</strong> al terminar en F, el ciclo vuelve a A.</li>
+            <li><strong>Organización:</strong> estructura programada y no aleatoria.</li>
+            <li><strong>Consistencia:</strong> permanencia del contexto temporal en April 2002.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="metadatos">
+      <div class="section-title"><span class="dot"></span><h2>Metadatos del archivo recuperado</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Campo</th>
+              <th>Valor</th>
+              <th>Interpretación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tipo de archivo</td>
+              <td>application/msword</td>
+              <td>Documento Microsoft Word clásico <code class="inline">.doc</code>.</td>
+            </tr>
+            <tr>
+              <td>Aplicación</td>
+              <td>Microsoft Word 10.0</td>
+              <td>Creación o edición en una versión antigua de Word, asociada a Office 2002.</td>
+            </tr>
+            <tr>
+              <td>Título interno</td>
+              <td>Jimmy Jungle</td>
+              <td>Nombre embebido a nivel de metadatos internos.</td>
+            </tr>
+            <tr>
+              <td>Creación</td>
+              <td>2002-04-15T20:30:00Z</td>
+              <td>Momento inicial del documento.</td>
+            </tr>
+            <tr>
+              <td>Modificación</td>
+              <td>2002-04-15T21:42:00Z</td>
+              <td>Edición posterior, aproximadamente 1 hora y 12 minutos después.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title"><span class="dot"></span><h2>Ocultamiento y recuperación</h2></div>
+      <div class="cards">
+        <article class="card">
+          <h3>Método de ocultamiento</h3>
+          <p>
+            El proceso identificado fue una <strong>eliminación lógica del archivo</strong> dentro del sistema de archivos. En Autopsy,
+            el elemento apareció en la carpeta de <strong>Deleted Files</strong> con marca visual de archivo borrado, lo que indica que
+            el contenido seguía presente físicamente y aún podía recuperarse.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Evidencia técnica</h3>
+          <ul>
+            <li>Bloques marcados como <code class="inline">Unallocated</code>.</li>
+            <li>Presencia del archivo en la vista de elementos eliminados.</li>
+            <li>Posibilidad de recuperación mientras no exista sobrescritura.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="procedimiento">
+      <div class="section-title"><span class="dot"></span><h2>Procedimiento del investigador</h2></div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>1. Identificación inicial</h4>
+          <p>Se localizaron archivos recuperados dentro de categorías de eliminados y se verificó su estado en el sistema de archivos.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>2. Validación técnica</h4>
+          <p>Se revisaron vistas de texto, metadatos y hexadecimal para confirmar tipo real, fechas, tamaño y señales de alteración.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>3. Examen de contenido</h4>
+          <p>En <code class="inline">Jimmy Jungle.doc</code> se analizó el texto extraído y los metadatos para reconstruir el contenido completo.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>4. Revisión de archivos gráficos y comprimidos</h4>
+          <p>Se verificó la firma del archivo, contenido residual, datos ocultos y posibles extensiones alteradas.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>5. Recuperación final</h4>
+          <p>Cuando fue necesario, se realizó extracción o carving del contenido válido y posterior apertura con la herramienta adecuada.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title"><span class="dot"></span><h2>Evaluación sobre <code class="inline">coverpage.jpg</code></h2></div>
+      <div class="card">
+        <h3>Software de creación</h3>
+        <p>
+          No es posible demostrar con certeza el programa que creó <code class="inline">coverpage.jpg</code> usando únicamente el valor
+          <code class="inline">application/octet-stream</code>. Ese dato solo clasifica el archivo como contenido binario genérico.
+          Al no existir campos como <strong>Software</strong>, <strong>EXIF</strong> o <strong>Creator Tool</strong>, no hay soporte técnico suficiente para atribuir una herramienta de origen.
+        </p>
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <div class="section-title"><span class="dot"></span><h2>Conclusión</h2></div>
+      <div class="card">
+        <h3>Síntesis final</h3>
+        <p>
+          El análisis permitió establecer la existencia de ocultamiento mediante eliminación lógica, conservación de datos recuperables y
+          trazabilidad útil a partir de metadatos. La revisión cruzada de vistas lógicas, contenido textual y estructura interna de los
+          archivos permitió reconstruir hallazgos relevantes del caso con un enfoque técnico y verificable.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      Documento HTML generado con diseño ciber para visualización local, repositorio o publicación web básica.
+    </div>
+  </div>
+</body>
+</html>
