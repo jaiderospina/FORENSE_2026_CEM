@@ -8,7 +8,8 @@ Este repositorio documenta el desarrollo de un ejercicio práctico de análisis 
 - MY. Cristian Meza
 - MY. Jhon Colorado
 - MY. Merly Rivera
-  
+- MY. Harrinton Calderón
+
 ## Objetivo
 
 Realizar un análisis forense básico sobre una imagen digital para identificar evidencias, revisar metadatos, recuperar archivos de interés y documentar de manera clara el procedimiento seguido durante la investigación.
@@ -28,7 +29,7 @@ Realizar un análisis forense básico sobre una imagen digital para identificar 
 
 El trabajo inició con la ubicación del material del laboratorio, la descompresión del archivo que contenía la imagen forense y la generación del hash MD5 para conservar la trazabilidad del proceso.
 
-![Preparación inicial de la evidencia](<fotos/Paso-1.png>)
+<img src="fotos/Paso-1.png" alt="Preparación inicial de la evidencia" width="700">
 
 ### 2. Creación del caso
 
@@ -36,37 +37,37 @@ La creación del caso en Autopsy se realizó paso a paso, registrando la informa
 
 **Paso 1.** Se seleccionó la opción para crear un nuevo caso y se diligenció el nombre del caso, el directorio base y el tipo de caso.
 
-![Crear caso - información principal](<fotos/Crear caso.png>)
+<img src="fotos/Crear caso.png" alt="Crear caso - información principal" width="700">
 
 **Paso 2.** Se completó la información opcional del caso, incluyendo los datos del examinador responsables del laboratorio.
 
-![Crear caso - información opcional](<fotos/Crear caso 2.png>)
+<img src="fotos/Crear caso 2.png" alt="Crear caso - información opcional" width="700">
 
 **Paso 3.** Una vez creado el caso, se inició el asistente para agregar una nueva fuente de datos y se definió el host que agruparía la evidencia.
 
-![Crear caso - selección de host](<fotos/Crear caso 3.png>)
+<img src="fotos/Crear caso 3.png" alt="Crear caso - selección de host" width="700">
 
 **Paso 4.** Se eligió el tipo de fuente de datos correspondiente a una imagen de disco o archivo de máquina virtual.
 
-![Crear caso - tipo de fuente de datos](<fotos/Crear caso 4.png>)
+<img src="fotos/Crear caso 4.png" alt="Crear caso - tipo de fuente de datos" width="700">
 
 **Paso 5.** Se indicó la ruta de la imagen a analizar, la zona horaria y el valor hash conocido para asociarlo al caso.
 
-![Crear caso - selección de la imagen](<fotos/Crear caso 5.png>)
+<img src="fotos/Crear caso 5.png" alt="Crear caso - selección de la imagen" width="700">
 
 **Paso 6.** Se revisaron y configuraron los módulos de ingestión que se ejecutarían sobre la fuente de datos.
 
-![Crear caso - configuración de ingestión](<fotos/Crear caso 6.png>)
+<img src="fotos/Crear caso 6.png" alt="Crear caso - configuración de ingestión" width="700">
 
 **Paso 7.** Después de finalizar el asistente, el caso quedó listo para comenzar la exploración de la evidencia dentro de Autopsy.
 
-![Visualización de la fuente de datos cargada](<fotos/Visualización data sources.png>)
+<img src="fotos/Visualización data sources.png" alt="Visualización de la fuente de datos cargada" width="700">
 
 ### 3. Carga de la fuente de datos
 
 Luego de crear el caso, se agregó la imagen forense como fuente de datos para iniciar la inspección del sistema de archivos. Durante esta etapa, Autopsy reportó varios módulos no compatibles con el entorno de ejecución utilizado.
 
-![Error de módulos de ingestión](<fotos/Errores ingest module.png>)
+<img src="fotos/Errores ingest module.png" alt="Error de módulos de ingestión" width="700">
 
 **Nota:** los módulos no compatibles no se seleccionaron para evitar conflictos durante el proceso de ingestión y permitir que el análisis continuara con los componentes funcionales dentro de la versión 4.23 de Autopsy.
 
@@ -74,7 +75,7 @@ Luego de crear el caso, se agregó la imagen forense como fuente de datos para i
 
 Con la imagen ya cargada, Autopsy permitió revisar la estructura del sistema de archivos, los archivos asignados, el espacio no asignado y la clasificación por tipos. En esta vista se identificaron los archivos más relevantes del caso y se decidió cuáles debían ser analizados con mayor detalle.
 
-![Visualización general de la evidencia](<fotos/Visualización data sources.png>)
+<img src="fotos/Visualización data sources.png" alt="Visualización general de la evidencia" width="700">
 
 ## Evidencias observadas
 
@@ -82,13 +83,13 @@ Con la imagen ya cargada, Autopsy permitió revisar la estructura del sistema de
 
 Este archivo fue uno de los primeros elementos de interés detectados en la evidencia. Su revisión inicial en Autopsy mostró una vista hexadecimal y los metadatos básicos del archivo, lo que permitió confirmar su existencia, tamaño, nombre interno y fechas asociadas.
 
-![Vista hexadecimal del archivo 1](<fotos/HEX archivo 1.png>)
+<img src="fotos/HEX archivo 1.png" alt="Vista hexadecimal del archivo 1" width="700">
 
-![Metadatos del archivo 1](<fotos/Metadata archivo 1.png>)
+<img src="fotos/Metadata archivo 1.png" alt="Metadatos del archivo 1" width="700">
 
 Sin embargo, no fue posible identificar de forma completa la información de los metadatos necesaria para trabajar directamente con la función **Jump to Offset** o con los segmentos desde la interfaz de Autopsy. Debido a esa limitación, se recurrió a la terminal para usar comandos que permitieran extraer manualmente el contenido y reconstruir la imagen.
 
-![Extracción y visualización de la imagen recuperada](<fotos/captura de imagen.png>)
+<img src="fotos/captura de imagen.png" alt="Extracción y visualización de la imagen recuperada" width="700">
 
 Este procedimiento permitió confirmar que el archivo contenía una imagen relacionada con el caso, aun cuando la versión utilizada de Autopsy no ofreció toda la información necesaria para realizar la recuperación únicamente desde la herramienta.
 
@@ -96,9 +97,9 @@ Este procedimiento permitió confirmar que el archivo contenía una imagen relac
 
 Se identificó un documento con contenido textual legible dentro de Autopsy. La vista de texto permitió observar información relevante para la investigación, incluyendo nombres, direcciones y una referencia a una contraseña compartida previamente.
 
-![Contenido textual del documento](<fotos/Text archivo 2.png>)
+<img src="fotos/Text archivo 2.png" alt="Contenido textual del documento" width="700">
 
-![Contenido textual con metadatos adicionales](<fotos/Text archivo 2.2.png>)
+<img src="fotos/Text archivo 2.2.png" alt="Contenido textual con metadatos adicionales" width="700">
 
 Además de lo anterior, en este archivo fue posible identificar datos del proveedor, lo cual ayudó a responder varias de las preguntas planteadas en el cuestionario del laboratorio.
 
@@ -106,31 +107,31 @@ Además de lo anterior, en este archivo fue posible identificar datos del provee
 
 Otro hallazgo importante fue el archivo `Scheduled Visits.exe`. Primero se revisó su contenido desde distintas vistas en Autopsy para identificar su tipo real, su estructura y la información técnica disponible.
 
-![Vista hexadecimal del archivo 3](<fotos/HEX archivo 3.png>)
+<img src="fotos/HEX archivo 3.png" alt="Vista hexadecimal del archivo 3" width="700">
 
-![Cadenas detectadas en el archivo 3](<fotos/Strings archivo 3.png>)
+<img src="fotos/Strings archivo 3.png" alt="Cadenas detectadas en el archivo 3" width="700">
 
-![Metadatos del archivo 3](<fotos/Metadata archivo 3.png>)
+<img src="fotos/Metadata archivo 3.png" alt="Metadatos del archivo 3" width="700">
 
 Aunque el archivo aparecía con extensión `.exe`, la revisión de metadatos mostró indicios de que su contenido correspondía realmente a un archivo comprimido. Esto justificó la necesidad de probar métodos alternativos de apertura y extracción.
 
 Al intentar abrir el archivo de forma directa se presentó un error, lo que indicó que el contenido requería tratamiento adicional antes de poder ser consultado.
 
-![Error al intentar abrir el archivo 3](<fotos/archivo 3 error.png>)
+<img src="fotos/archivo 3 error.png" alt="Error al intentar abrir el archivo 3" width="700">
 
 Por esta razón, se utilizaron comandos en la terminal para extraer el segmento correcto de la imagen, renombrar el archivo y probar su apertura con el formato adecuado.
 
-![Comandos usados para extraer el archivo 3](<fotos/extracción archivo 3.png>)
+<img src="fotos/extracción archivo 3.png" alt="Comandos usados para extraer el archivo 3" width="700">
 
 Después de lograr abrir el contenido recuperado, el sistema solicitó una contraseña para descomprimirlo.
 
-![Solicitud de contraseña del archivo recuperado](<fotos/solicitud de password.png>)
+<img src="fotos/solicitud de password.png" alt="Solicitud de contraseña del archivo recuperado" width="700">
 
 En este punto se utilizó la contraseña indicada en el caso de ejemplo, ya que no fue posible encontrar la pista completa dentro de los metadatos del archivo 1 debido a las limitaciones observadas en la versión 4.23 de Autopsy.
 
 Finalmente, al ingresar la contraseña correcta, fue posible acceder al archivo y visualizar su contenido.
 
-![Archivo 3 abierto correctamente](<fotos/archivo 3 abierto.png>)
+<img src="fotos/archivo 3 abierto.png" alt="Archivo 3 abierto correctamente" width="700">
 
 ## Hallazgos principales
 
