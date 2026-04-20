@@ -81,5 +81,28 @@ Disk Image: Copia completa de un disco para análisis forense.
 Se logró identificar evidencia de actividad ilícita relacionada con distribución de drogas.  
 Se encontraron comunicaciones, direcciones y métodos de ocultamiento de información.  
 También se evidenció que el sospechoso intentó eliminar archivos, los cuales fueron recuperados mediante técnicas forenses.
+
+## EVIDENCIAS
+
 <img width="1702" height="897" alt="846fdf7d-c228-40a0-96a9-5b0e5f079755" src="https://github.com/user-attachments/assets/3c80da94-01b3-4e96-a13b-31dd388d3ed4" />
+
+
+<img width="1393" height="402" alt="9f38e6eb-05e9-4ed2-b75e-f6f7d5eea851" src="https://github.com/user-attachments/assets/a0c5ba2c-6bcb-443c-a8d5-290402e163b7" />
+
+<img width="1697" height="252" alt="503b447b-0d95-4cc9-9de5-95a0bd35339c" src="https://github.com/user-attachments/assets/08cce4a5-c42e-40e6-933e-4d5e52b4590f" />
+
+<img width="1832" height="895" alt="a4417d71-7788-4438-9a8f-b46f5ba30cdc" src="https://github.com/user-attachments/assets/1a23200c-0d59-459e-b53c-a6e99af65056" />
+
+<img width="1803" height="887" alt="48eb88e6-cd24-4c0a-9a41-e2b56d042cb6" src="https://github.com/user-attachments/assets/8a18f4cb-2f3d-4eda-9349-d419e160eb84" />
+
+<img width="1902" height="895" alt="58982906-bf6e-4beb-95d5-1e7faaf569c5" src="https://github.com/user-attachments/assets/f4cd4acb-f4bb-46df-aa7f-895b8d2330f1" />
+
+<img width="1916" height="875" alt="356dc803-4e39-412c-b3cf-790372028535" src="https://github.com/user-attachments/assets/7f34ebe8-6aaf-4a28-a816-e014ab55d7a6" />
+
+<img width="1893" height="622" alt="9857b08a-b897-438a-b488-7d2cc70cd45f" src="https://github.com/user-attachments/assets/6f8aaafb-70be-4e3b-8c95-254d513e2795" />
+
+
+
+
+
 
