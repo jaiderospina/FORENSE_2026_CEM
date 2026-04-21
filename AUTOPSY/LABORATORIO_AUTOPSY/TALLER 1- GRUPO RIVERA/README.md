@@ -189,11 +189,31 @@ open visits.zip
 
 <img src="fotos/extracción archivo 3.png" alt="Comandos usados para extraer el archivo 3" width="700">
 
-Después de recuperar el archivo, el sistema solicitó una contraseña para descomprimirlo.
+Después de recuperar el archivo, era necesario identificar la contraseña para poder descomprimirlo. Para esto se utilizó el comando `strings` sobre la imagen reconstruida `coverpage.jpg`, ya que este comando permite extraer cadenas legibles que pueden estar ocultas dentro del contenido hexadecimal del archivo.
+
+Comando utilizado para identificar la contraseña:
+
+```bash
+strings coverpage.jpg
+```
+
+Para filtrar directamente la línea donde aparecía la clave, también se podía usar:
+
+```bash
+strings coverpage.jpg | grep -i "pw"
+```
+
+En la salida del comando se identificó la cadena `pw=goodtimes`, la cual permitió establecer que la contraseña del archivo protegido era `goodtimes`.
+
+<img src="fotos/STRINGS 1.png" alt="Ejecución del comando strings sobre coverpage.jpg" width="700">
+
+<img src="fotos/STRINGS 2.png" alt="Identificación de la contraseña con strings" width="700">
+
+Con la contraseña identificada, al intentar descomprimir el archivo el sistema solicitó ingresarla para continuar.
 
 <img src="fotos/solicitud de password.png" alt="Solicitud de contraseña del archivo recuperado" width="700">
 
-En este punto se utilizó la contraseña indicada en el caso de ejemplo, `goodtimes`, debido a que en nuestra ejecución no fue posible encontrar la pista completa dentro de los metadatos del archivo `cover page.jpgc` por las limitaciones observadas en Autopsy 4.23.0.
+En este punto se utilizó la contraseña `goodtimes`, identificada previamente con el comando `strings` sobre el archivo `coverpage.jpg` recuperado.
 
 Finalmente, al ingresar la contraseña correcta, fue posible abrir el archivo y visualizar una hoja de cálculo con visitas programadas a diferentes instituciones educativas.
 
@@ -239,7 +259,7 @@ La contraseña usada para abrir el archivo recuperado fue:
 goodtimes
 ```
 
-En el caso guía, esta contraseña se encuentra asociada a la imagen recuperada. En nuestro análisis fue necesario apoyarse en el caso de ejemplo, porque la versión de Autopsy utilizada no permitió obtener la pista completa desde los metadatos del primer archivo.
+Esta contraseña fue identificada mediante el comando `strings` aplicado sobre la imagen recuperada `coverpage.jpg`, donde se encontró la cadena `pw=goodtimes`.
 
 ### 3. Escuelas identificadas
 
@@ -283,7 +303,7 @@ Durante el desarrollo del laboratorio se evidenciaron algunas limitaciones en la
 | No fue posible obtener desde Autopsy toda la información necesaria para trabajar con **Jump to Offset** o con segmentos del archivo `cover page.jpgc`. | La extracción de la imagen no pudo completarse directamente desde la interfaz gráfica. | Se usó `dd` para extraer manualmente el fragmento correspondiente desde la imagen forense y reconstruir el archivo. |
 | El archivo `Scheduled Visits.exe` no abrió correctamente desde la interfaz gráfica. | No era posible consultar el contenido del archivo recuperado de forma directa. | Se extrajo el segmento con `dd`, se validó el tipo real del archivo con `file` y se renombró para tratarlo como archivo comprimido. |
 | La extensión `.exe` no correspondía al contenido real del archivo. | Podía interpretarse erróneamente como un ejecutable, cuando en realidad contenía información comprimida. | Se revisó el encabezado hexadecimal y se comprobó el tipo de archivo desde la terminal antes de renombrarlo. |
-| La contraseña del archivo protegido no pudo confirmarse completamente desde los metadatos del primer archivo en nuestra ejecución. | No era posible descomprimir el archivo protegido únicamente con la información recuperada desde Autopsy. | Se utilizó la contraseña del caso guía, `goodtimes`, y se documentó la limitación encontrada durante el análisis. |
+| La contraseña del archivo protegido no se visualizaba claramente desde la vista de metadatos de Autopsy. | No era posible descomprimir el archivo protegido únicamente con la información observada en la interfaz gráfica. | Se ejecutó `strings coverpage.jpg` sobre la imagen recuperada y se identificó la cadena `pw=goodtimes`. |
 
 ## Estructura del repositorio
 
