@@ -93,7 +93,9 @@ C:\
 
 ## 5. Principales carpetas del sistema Windows
 
-![](carpetas.jpg)
+<div align="center">
+  <img src="carpetas.jpg" alt="avatar" style="width: 50%; height: auto;">
+</div>
 
 ### 5.1 Carpeta Windows
 
