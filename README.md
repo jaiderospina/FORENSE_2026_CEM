@@ -72,3 +72,7 @@ En resumen, mientras la ciberseguridad se enfoca en *evitar* el incidente, la in
 
 ---
 - https://digitalcorpora.org/ **DigitalCorpora.org** es un repositorio especializado que ofrece de manera gratuita una amplia biblioteca de conjuntos de datos, como imágenes de disco, volcados de memoria y capturas de red, diseñados específicamente para la investigación y la educación en **informática forense**. El sitio, fundado por Simson Garfinkel y apoyado por el programa de Datos Abiertos de AWS, facilita recursos críticos que incluyen casi un millón de archivos reales y escenarios de investigación complejos para la formación de profesionales y la validación de herramientas forenses.
+
+---
+
+https://www.sans.org/tools/timeline-explorer
