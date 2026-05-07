@@ -13,3 +13,23 @@ El caso M57-Jean es un escenario de entrenamiento en informática forense que si
 
 
 [**Ver PDF**](LABORATORIO_M57_JON.pdf)
+---
+
+## Fuentes de apoyo:
+
+- https://www.youtube.com/watch?v=zbTE5oK3EhA
+- https://www.youtube.com/watch?v=gc3FRFC3CnA
+- https://youtu.be/WB4xj8VYotk
+- https://youtu.be/gWclBdzBzDM
+- https://repository.unipiloto.edu.co/bitstream/handle/20.500.12277/11400/Caso%202009%20M57-Jean.pdf?sequence=4
+- https://hasanka-amarasinghe.medium.com/digital-forensic-report-m57-jean-allison-case-data-breach-of-m57-biz-92396ec3a657
+- https://www.dragonjar.org/laboratorio-informatica-forense-analisis-del-registro-de-windows.xhtml
+- https://keepcoding.io/blog/como-funciona-el-registro-de-windows/
+- https://youtu.be/iIJ2nFu1Pjc?si=ye98A9v1rvM3aUXD
+- https://digitalperito.es/blog/autopsy-guia-analisis-forense-digital-2026/
+- https://www.forensicfocus.com/articles/how-to-timeline-login-information-from-windows-event-logs/
+- Visor pst: https://goldfynch.com/
+
+
+
+
