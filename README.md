@@ -82,7 +82,13 @@ En resumen, mientras la ciberseguridad se enfoca en *evitar* el incidente, la in
 - https://peritosinformaticos.ar/windows-registry-recovery/
 - https://faisalyahya.com/cybersecurity-response/memory-forensics-core-of-cyber-investigations-unveiled/
 - https://github.com/Bugs-B0unt3r/CTF-Beginners-Toolkit
-- 
+- https://github.com/baselsayeh/coldboot-tools/releases/download/2/bios_memimage64.zip
+- **https://hackers-arise.com/digital-forensics-extracting-secrets-after-a-cold-boot-attack/**
+- https://n1ght-w0lf.github.io/ctf%20writeups/memlabs-lab1/
+- https://www.dfirhive.com/post/volatility-forensics-a-beginner-s-guide-to-memory-analysis
+-  
+
+
 
 ---
 - https://digitalcorpora.org/ **DigitalCorpora.org** es un repositorio especializado que ofrece de manera gratuita una amplia biblioteca de conjuntos de datos, como imágenes de disco, volcados de memoria y capturas de red, diseñados específicamente para la investigación y la educación en **informática forense**. El sitio, fundado por Simson Garfinkel y apoyado por el programa de Datos Abiertos de AWS, facilita recursos críticos que incluyen casi un millón de archivos reales y escenarios de investigación complejos para la formación de profesionales y la validación de herramientas forenses.
