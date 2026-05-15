@@ -86,7 +86,7 @@ En resumen, mientras la ciberseguridad se enfoca en *evitar* el incidente, la in
 - **https://hackers-arise.com/digital-forensics-extracting-secrets-after-a-cold-boot-attack/**
 - https://n1ght-w0lf.github.io/ctf%20writeups/memlabs-lab1/
 - https://www.dfirhive.com/post/volatility-forensics-a-beginner-s-guide-to-memory-analysis
--  
+-  https://informaticaforense.com/el-estandar-iso-iec-27037-y-la-evidencia-digital/
 
 
 
