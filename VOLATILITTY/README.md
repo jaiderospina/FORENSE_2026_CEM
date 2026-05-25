@@ -98,3 +98,4 @@ python3 vol.py -f /ruta/del/volcado_memoria.raw linux.pslist
 # Referencias:
 
 - https://github.com/volatilityfoundation
+- https://www.unfantasmaenelsistema.com/2026/05/volatility-3-analisis-forense-de-volcados-de-memoria-ram/
