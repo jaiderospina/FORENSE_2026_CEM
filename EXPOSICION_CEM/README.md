@@ -132,3 +132,13 @@ Para orientar la calificación del taller, se deben fijar pautas que evalúen:
 * **Rigor Metodológico:** Capacidad de justificar cada acción técnica con base en el estándar adoptado.
 * **Pensamiento Crítico:** Habilidad para detectar anomalías, contradicciones o malas prácticas en el manejo original del caso.
 * **Claridad en la Argumentación:** Capacidad de traducir hallazgos técnicos complejos en conclusiones comprensibles para audiencias no técnicas (como jueces o comités directivos).
+
+---
+
+# Asignación.
+
+**Rivera**:  3
+**Pedraza** : 5
+**Meza**: 2
+**Antolinez** : 1
+** Romero : 4
