@@ -1,7 +1,14 @@
 # GUÍA LITE DE INTERPRETACIÓN ISO/IEC 27037
 
 ## Directrices para la Identificación, Recolección, Adquisición y Preservación de Evidencia Digital
+---
 
+### Presentado por:
+* MY. ANTOLINEZ DÍAZ RAÚL ORLANDO 
+* MY. CADAVID YACOMELO JASSED DAVID 
+* MY. CORREA MESA LEONARDO 
+* MY. ARIAS CUELLAR JUAN CARLOS 
+* CC. CARRASCAL ORTIZ MAURICIO DAVID 
 ---
 
 ### A.1 Objetivo y Alcance
