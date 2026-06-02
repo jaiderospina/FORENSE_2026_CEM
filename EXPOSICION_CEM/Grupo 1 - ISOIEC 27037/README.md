@@ -74,7 +74,7 @@ Los siguientes requisitos son obligatorios para que una pericia sea válida bajo
 
 ---
 
-### A.4 Glosario Técnico-Jurídico [cite: 14]
+### A.4 Glosario Técnico-Jurídico
 
 | Término | Definición |
 |---|---|
@@ -86,7 +86,7 @@ Los siguientes requisitos son obligatorios para que una pericia sea válida bajo
 
 ---
 
-### A.5 Limitaciones del Estándar ISO/IEC 27037 [cite: 20]
+### A.5 Limitaciones del Estándar ISO/IEC 27037
 
 La norma no cubre de manera específica los siguientes escenarios, que requieren remitirse a otros estándares o marcos complementarios:
 
